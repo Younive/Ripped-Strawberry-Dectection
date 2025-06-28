@@ -1,0 +1,5 @@
+numpy==2.3.1
+pandas==2.3.0
+Pillow==11.2.1
+torch==2.3.1+cu118
+ultralytics==8.3.160
