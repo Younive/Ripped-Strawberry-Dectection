@@ -1,4 +1,4 @@
-# Ripped Strawberry Detection using YOLOv8
+# Ripped Strawberry Detection using YOLOv11
 
 This project demonstrates a complete workflow for training a YOLO (You Only Look Once) object detection model to identify ripe strawberries in images. The process covers data preprocessing from XML annotations, converting them to the YOLO format, training the model, and evaluating its performance.
 
@@ -12,10 +12,6 @@ This project demonstrates a complete workflow for training a YOLO (You Only Look
   - [4. Model Evaluation](#4-model-evaluation)
   - [5. Prediction and Export](#5-prediction-and-export)
 - [Results](#results)
-- [How to Use](#how-to-use)
-  - [Prerequisites](#prerequisites)
-  - [Directory Structure](#directory-structure)
-  - [Running the Code](#running-the-code)
 
 ## Project Overview
 
@@ -31,7 +27,7 @@ The notebook parses this XML file and processes it into a format suitable for tr
 
 ## Methodology
 
-The end-to-end process is implemented in the `object_detection.ipynb` Jupyter Notebook and can be broken down into the following key steps:
+The end-to-end process is implemented in the `object-detection.ipynb` Jupyter Notebook and can be broken down into the following key steps:
 
 ### 1. Data Preprocessing
 The raw XML annotations are parsed and converted into a structured `pandas` DataFrame. The bounding box coordinates are then transformed from the top-left (`xtl`, `ytl`) and bottom-right (`xbr`, `ybr`) format to the YOLO format, which consists of:
@@ -41,8 +37,10 @@ The raw XML annotations are parsed and converted into a structured `pandas` Data
 - **`boxH`**: The normalized height of the bounding box.
 
 The conversion formulas used are:
-$$X_{cent} = \frac{x_{tl} + x_{br}}{2 \times \text{image\_width}}$$$$Y_{cent} = \frac{y_{tl} + y_{br}}{2 \times \text{image\_height}}$$$$\text{boxW} = \frac{x_{br} - x_{tl}}{\text{image\_width}}$$
-$$\text{boxH} = \frac{y_{br} - y_{tl}}{\text{image\_height}}$$
+$$X_{cent} = \frac{x_{tl} + x_{br}}{2 \times image_{width}}$$
+$$Y_{cent} = \frac{y_{tl} + y_{br}}{2 \times image_{height}}$$
+$$boxW = \frac{x_{br} - x_{tl}}{image_{width}}$$
+$$boxH = \frac{y_{br} - y_{tl}}{image_{height}}$$
 
 A class label of `0` is assigned to all strawberry detections. The processed annotations are saved as individual `.txt` files for each image, with each file containing the label and the four normalized coordinates for every bounding box in that image.
 
